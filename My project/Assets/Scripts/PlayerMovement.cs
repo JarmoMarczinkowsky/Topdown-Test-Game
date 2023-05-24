@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public float Speed = 5f;
     public Rigidbody2D rb;
+
+    private float pressKey = 0;
    
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,24 @@ public class PlayerMovement : MonoBehaviour
             // Moving right
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
+
+        //if (Keyboard.current.gKey.wasReleasedThisFrame)
+        //{
+        //    if (pressKey == 0)
+        //    {
+        //        Time.timeScale = 0f;
+        //        pressKey = 1;
+
+        //    }
+        //    else
+        //    {
+        //        Time.timeScale = 1f;
+        //        pressKey = 0;
+        //    }
+
+
+
+        //}
         //else if (moveY > 0)
         //{
         //    // Moving upwards

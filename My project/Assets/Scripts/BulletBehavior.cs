@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BulletBehavior : MonoBehaviour
 {
@@ -14,9 +15,21 @@ public class BulletBehavior : MonoBehaviour
         rb.velocity = transform.right * Speed;  
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Keyboard.current.leftShiftKey.isPressed)
+        {
+            rb.velocity = transform.right * Speed * 0.1f;
+        }
+        else
+        {
+            rb.velocity = transform.right * Speed * 1;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        Debug.Log($"Hit: {hitInfo.name}");
+        Destroy(gameObject);
     }
 }
