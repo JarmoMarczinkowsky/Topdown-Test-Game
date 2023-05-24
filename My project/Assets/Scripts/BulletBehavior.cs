@@ -9,36 +9,44 @@ public class BulletBehavior : MonoBehaviour
     public Rigidbody2D rb;
 
     private short hasPressed = 0;
+    private float speedModifier;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = transform.right * Speed; 
+        rb.velocity = transform.right * Speed;
+
     }
 
     void Update()
     {
+
+        
+
+        //make existing bullets slower. New bullets will spawn with full speed;
         if (Keyboard.current.leftShiftKey.wasPressedThisFrame)
         {
             if(hasPressed == 0)
             {
-                rb.velocity = transform.right * Speed * 0.01f;
                 hasPressed = 1;
+                speedModifier = 1;
             }
             else
             {
-                rb.velocity = transform.right * Speed * 1;
                 hasPressed = 0;
+                speedModifier = 0.01f;
             }
 
         }
+
+        rb.velocity = transform.right * Speed * speedModifier;
+
+        
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        
-
         Debug.Log($"Hit: {hitInfo.name}");
         Destroy(gameObject);
     }
