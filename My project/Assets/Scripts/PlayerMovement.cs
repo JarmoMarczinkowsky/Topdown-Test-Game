@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5f;
+    public float Speed = 5f;
     public Rigidbody2D rb;
    
     // Start is called before the first frame update
@@ -14,22 +14,34 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        float dirX = Input.GetAxis("Horizontal") * speed;
-        float dirY = Input.GetAxis("Vertical") * speed;
+        float moveX = Input.GetAxis("Horizontal");
+        float moveY = Input.GetAxis("Vertical");
 
-        rb.velocity = new Vector2(dirX, dirY);
+        rb.velocity = new Vector2(moveX, moveY) * Speed;
 
-        if(Keyboard.current.leftArrowKey.wasPressedThisFrame)
+        if (moveX < 0)
         {
-            transform.Rotate(0, 180, 0);
+            // Moving left
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
-        else if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
+        else if (moveX > 0)
         {
-            transform.Rotate(0, 0, 0);
+            // Moving right
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
-            //create a bullet
-        
+        //else if (moveY > 0)
+        //{
+        //    // Moving upwards
+        //    transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+        //}
+        //else if (moveY < 0)
+        //{
+        //    // Moving downwards
+        //    transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+        //    //create a bullet
+
+        //}
     }
-}
+    }
