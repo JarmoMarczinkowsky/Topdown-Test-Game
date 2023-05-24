@@ -19,7 +19,7 @@ public class BulletBehavior : MonoBehaviour
     {
         if (Keyboard.current.leftShiftKey.isPressed)
         {
-            rb.velocity = transform.right * Speed * 0.1f;
+            rb.velocity = transform.right * Speed * 0.01f;
         }
         else
         {
