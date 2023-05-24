@@ -34,34 +34,6 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
 
-        //if (Keyboard.current.gKey.wasReleasedThisFrame)
-        //{
-        //    if (pressKey == 0)
-        //    {
-        //        Time.timeScale = 0f;
-        //        pressKey = 1;
-
-        //    }
-        //    else
-        //    {
-        //        Time.timeScale = 1f;
-        //        pressKey = 0;
-        //    }
-
-
-
-        //}
-        //else if (moveY > 0)
-        //{
-        //    // Moving upwards
-        //    transform.rotation = Quaternion.Euler(0f, 0f, 90f);
-        //}
-        //else if (moveY < 0)
-        //{
-        //    // Moving downwards
-        //    transform.rotation = Quaternion.Euler(0f, 0f, -90f);
-        //    //create a bullet
-
-        //}
+        
     }
-    }
+}

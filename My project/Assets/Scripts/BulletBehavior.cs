@@ -14,7 +14,7 @@ public class BulletBehavior : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = transform.right * Speed;  
+        rb.velocity = transform.right * Speed; 
     }
 
     void Update()
@@ -37,6 +37,8 @@ public class BulletBehavior : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
+        
+
         Debug.Log($"Hit: {hitInfo.name}");
         Destroy(gameObject);
     }
