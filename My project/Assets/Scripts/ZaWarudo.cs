@@ -8,10 +8,12 @@ public class ZaWarudo : MonoBehaviour
 
     private float waitTime = 0;
     private short hasPressed = 0;
+    private SpriteRenderer sprite;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -22,6 +24,9 @@ public class ZaWarudo : MonoBehaviour
             if(hasPressed == 0)
             {
                 hasPressed = 1;
+                //change color of sprite
+                sprite.color = new Color(0, 0, 0, 255);
+
                 StartCoroutine(fuckingWait());
             }
 
