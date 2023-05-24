@@ -33,10 +33,6 @@ public class BulletBehavior : MonoBehaviour
             }
 
         }
-        //else
-        //{
-        //    rb.velocity = transform.right * Speed * 1;
-        //}
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
