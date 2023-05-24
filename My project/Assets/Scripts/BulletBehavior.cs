@@ -8,6 +8,8 @@ public class BulletBehavior : MonoBehaviour
     public float Speed = 10f;
     public Rigidbody2D rb;
 
+    private short hasPressed = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,14 +19,24 @@ public class BulletBehavior : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.leftShiftKey.isPressed)
+        if (Keyboard.current.leftShiftKey.wasPressedThisFrame)
         {
-            rb.velocity = transform.right * Speed * 0.01f;
+            if(hasPressed == 0)
+            {
+                rb.velocity = transform.right * Speed * 0.01f;
+                hasPressed = 1;
+            }
+            else
+            {
+                rb.velocity = transform.right * Speed * 1;
+                hasPressed = 0;
+            }
+
         }
-        else
-        {
-            rb.velocity = transform.right * Speed * 1;
-        }
+        //else
+        //{
+        //    rb.velocity = transform.right * Speed * 1;
+        //}
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
