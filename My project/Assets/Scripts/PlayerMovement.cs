@@ -6,8 +6,6 @@ public class PlayerMovement : MonoBehaviour
 {
     public float Speed = 5f;
     public Rigidbody2D rb;
-
-    private float pressKey = 0;
    
     // Start is called before the first frame update
     void Start()

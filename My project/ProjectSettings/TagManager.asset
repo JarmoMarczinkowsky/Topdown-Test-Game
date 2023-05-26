@@ -47,6 +47,9 @@ TagManager:
   - name: Grass
     uniqueID: 204594711
     locked: 0
+  - name: Za Warudo
+    uniqueID: 2696018693
+    locked: 0
   - name: Wall
     uniqueID: 2425651459
     locked: 0
