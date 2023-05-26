@@ -8,8 +8,9 @@ public class BulletBehavior : MonoBehaviour
     public float Speed = 10f;
     public Rigidbody2D rb;
 
-    private short hasPressed = 0;
-    private float speedModifier;
+    //public static short hasPressed;
+
+    private float speedModifier = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -17,32 +18,24 @@ public class BulletBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * Speed;
 
+        //bug
+        //new bullets spawn with velocity 0f
+
     }
 
     void Update()
     {
-
-        
-
-        //make existing bullets slower. New bullets will spawn with full speed;
-        if (Keyboard.current.leftShiftKey.wasPressedThisFrame)
+        //time slows down for bullets when shift is pressed
+        if (Keyboard.current.leftShiftKey.isPressed)
         {
-            if(hasPressed == 0)
-            {
-                hasPressed = 1;
-                speedModifier = 1;
-            }
-            else
-            {
-                hasPressed = 0;
-                speedModifier = 0.01f;
-            }
-
+            speedModifier = 0.01f;
+        }
+        else
+        {
+            speedModifier = 1f;
         }
 
         rb.velocity = transform.right * Speed * speedModifier;
-
-        
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
