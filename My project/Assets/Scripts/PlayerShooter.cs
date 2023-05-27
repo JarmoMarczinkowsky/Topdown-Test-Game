@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerShooter : MonoBehaviour
 {
     public Transform shootingPoint;
+    public Transform fireballPoint;
     public GameObject bulletPrefab;
     public GameObject fireballPrefab;
     // Start is called before the first frame update
@@ -26,7 +27,7 @@ public class PlayerShooter : MonoBehaviour
         if(Keyboard.current.fKey.wasPressedThisFrame)
         {
             Debug.Log("Created fireball");
-            Instantiate(fireballPrefab, shootingPoint.position, transform.rotation);
+            Instantiate(fireballPrefab, fireballPoint.position, transform.rotation);
         }
     }
 }

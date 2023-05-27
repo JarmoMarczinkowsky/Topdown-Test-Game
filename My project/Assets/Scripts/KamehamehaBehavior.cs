@@ -8,6 +8,7 @@ public class KamehamehaBehavior : MonoBehaviour
     public Transform FireballSize;
     public float SizeModifier = 3f;
     public GameObject MyGameobject;
+    public Transform PlayerPosition;
 
     private float chargeSpeed;
     private Rigidbody2D rb;
@@ -40,7 +41,8 @@ public class KamehamehaBehavior : MonoBehaviour
             rb = MyGameobject.AddComponent<Rigidbody2D>();
             pos = RigidbodyConstraints2D.FreezeRotation;
 
-            speed = chargeSpeed * SizeModifier;
+            speed = 12 / (chargeSpeed / 2);
+            //speed = 20;
             rb.mass = chargeSpeed;
             rb.velocity = transform.right * speed;
             Debug.Log(rb.velocity);
@@ -49,5 +51,13 @@ public class KamehamehaBehavior : MonoBehaviour
 
         FireballSize.localScale = new Vector3(chargeSpeed / SizeModifier, chargeSpeed / SizeModifier, 0);
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.name != "Player")
+        {
+            Destroy(gameObject);
+        }
     }
 }
