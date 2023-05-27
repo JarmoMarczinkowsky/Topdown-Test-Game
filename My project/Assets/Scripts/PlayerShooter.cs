@@ -8,7 +8,6 @@ public class PlayerShooter : MonoBehaviour
     public Transform shootingPoint;
     public GameObject bulletPrefab;
 
-    private int chargeSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,15 +22,5 @@ public class PlayerShooter : MonoBehaviour
             Debug.Log("Created bullet");
             Instantiate(bulletPrefab, shootingPoint.position, transform.rotation);
         }
-
-        if (Keyboard.current.fKey.isPressed)
-        {
-            chargeSpeed++;
-        }
-        else
-        {
-            chargeSpeed = 0;
-        }
-        Debug.Log(chargeSpeed);
     }
 }
