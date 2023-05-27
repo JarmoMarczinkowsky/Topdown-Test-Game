@@ -34,7 +34,7 @@ public class KamehamehaBehavior : MonoBehaviour
         if (Keyboard.current.fKey.isPressed)
         {
             chargeSpeed += Time.deltaTime;
-            Debug.Log(chargeSpeed);
+            //Debug.Log(chargeSpeed);
 
         }
         else if (Keyboard.current.fKey.wasReleasedThisFrame)
@@ -43,10 +43,10 @@ public class KamehamehaBehavior : MonoBehaviour
             pos = RigidbodyConstraints2D.FreezeRotation;
 
             speed = 12 / (chargeSpeed / 2);
-            //speed = 20;
+            
             rb.mass = chargeSpeed;
             rb.velocity = transform.right * speed;
-            Debug.Log(rb.velocity);
+            
             released = true;
         }
 
@@ -59,6 +59,12 @@ public class KamehamehaBehavior : MonoBehaviour
         if (collision.collider.name != "Player")
         {
             Destroy(gameObject);
+
+            if(collision.collider.name == "Furious Fungy")
+            {
+                collision.collider.GetComponent<EnemyBehavior>().TakeDamage(rb.mass);
+                Debug.Log($"Hit enemy with {rb.mass} mass");
+            }
         }
     }
 }
