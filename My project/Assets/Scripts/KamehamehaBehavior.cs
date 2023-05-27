@@ -7,19 +7,28 @@ public class KamehamehaBehavior : MonoBehaviour
 {
     public Transform FireballSize;
     public float SizeModifier = 3f;
+    public GameObject MyGameobject;
 
     private float chargeSpeed;
     private Rigidbody2D rb;
-
+    private RigidbodyConstraints2D pos;
+    private float speed = 1;
+    private bool released = false;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (released)
+        {
+            return;
+        }
+
         if (Keyboard.current.fKey.isPressed)
         {
             chargeSpeed += Time.deltaTime;
@@ -28,12 +37,14 @@ public class KamehamehaBehavior : MonoBehaviour
         }
         else if (Keyboard.current.fKey.wasReleasedThisFrame)
         {
-            Debug.Log("Released");
-        }
-        else
-        {
-            chargeSpeed = 0;
-            transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            rb = MyGameobject.AddComponent<Rigidbody2D>();
+            pos = RigidbodyConstraints2D.FreezeRotation;
+
+            speed = chargeSpeed * SizeModifier;
+            rb.mass = chargeSpeed;
+            rb.velocity = transform.right * speed;
+            Debug.Log(rb.velocity);
+            released = true;
         }
 
         FireballSize.localScale = new Vector3(chargeSpeed / SizeModifier, chargeSpeed / SizeModifier, 0);
