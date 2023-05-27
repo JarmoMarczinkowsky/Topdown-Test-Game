@@ -18,8 +18,16 @@ public class PlayerMovement : MonoBehaviour
     {
         float moveX = Input.GetAxis("Horizontal");
         float moveY = Input.GetAxis("Vertical");
+        
+        if (Keyboard.current.fKey.isPressed)
+        {
+            rb.velocity = new Vector2(moveX, moveY) * Speed * 0.1f;
+        }
+        else
+        {
+            rb.velocity = new Vector2(moveX, moveY) * Speed;
+        }
 
-        rb.velocity = new Vector2(moveX, moveY) * Speed;
 
         if (moveX < 0)
         {

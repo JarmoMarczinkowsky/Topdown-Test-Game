@@ -60,9 +60,9 @@ public class KamehamehaBehavior : MonoBehaviour
         {
             Destroy(gameObject);
 
-            if(collision.collider.name == "Furious Fungy")
+            if(collision.collider.tag == "Enemy")
             {
-                collision.collider.GetComponent<EnemyBehavior>().TakeDamage(rb.mass);
+                collision.collider.GetComponent<EnemyBehavior>().TakeDamage(rb.mass * 1.5f);
                 Debug.Log($"Hit enemy with {rb.mass} mass");
             }
         }
