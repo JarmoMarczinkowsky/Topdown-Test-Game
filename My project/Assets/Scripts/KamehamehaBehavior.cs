@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerShooter : MonoBehaviour
+public class KamehamehaBehavior : MonoBehaviour
 {
-    public Transform shootingPoint;
-    public GameObject bulletPrefab;
-
+    public Transform FireballSize;
+    public float SizeModifier = 0.001f;
     private int chargeSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,20 +18,17 @@ public class PlayerShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            Debug.Log("Created bullet");
-            Instantiate(bulletPrefab, shootingPoint.position, transform.rotation);
-        }
-
         if (Keyboard.current.fKey.isPressed)
         {
             chargeSpeed++;
+            transform.localScale = new Vector3(chargeSpeed * (chargeSpeed / 40) * SizeModifier, chargeSpeed * (chargeSpeed / 40) * SizeModifier, chargeSpeed * (chargeSpeed / 40) * SizeModifier);
+
         }
         else
         {
             chargeSpeed = 0;
+            transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         }
-        Debug.Log(chargeSpeed);
+
     }
 }
