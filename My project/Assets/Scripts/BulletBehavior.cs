@@ -40,7 +40,18 @@ public class BulletBehavior : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        Debug.Log($"Hit: {hitInfo.name}");
-        Destroy(gameObject);
+        if (hitInfo.name != "BlueBullet(Clone)")
+        {
+            Debug.Log($"Hit: {hitInfo.name}");
+
+            var enemy = hitInfo.GetComponent<EnemyBehavior>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(1);
+                Destroy(gameObject);
+            }
+
+        }
+        
     }
 }
