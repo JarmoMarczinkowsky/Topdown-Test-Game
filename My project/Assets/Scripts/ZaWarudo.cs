@@ -10,7 +10,7 @@ public class ZaWarudo : MonoBehaviour
     public Color myColor = new Color(100, 100, 100, 255);
 
     private short hasPressed = 0;
-    private short loopLength = 50;
+    private short loopLength = 30;
     private SpriteRenderer sprite;
 
 

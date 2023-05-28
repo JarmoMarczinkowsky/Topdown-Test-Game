@@ -39,6 +39,11 @@ public class KamehamehaBehavior : MonoBehaviour
         }
         else if (Keyboard.current.fKey.wasReleasedThisFrame)
         {
+            if (transform.localScale.x < 0.2f)
+            {
+                Destroy(gameObject);
+            }
+
             rb = MyGameobject.AddComponent<Rigidbody2D>();
             pos = RigidbodyConstraints2D.FreezeRotation;
 
@@ -50,7 +55,7 @@ public class KamehamehaBehavior : MonoBehaviour
             released = true;
         }
 
-        FireballSize.localScale = new Vector3(chargeSpeed / SizeModifier, chargeSpeed / SizeModifier, 0);
+        FireballSize.localScale = new Vector3(chargeSpeed / SizeModifier * 1.1f, chargeSpeed / SizeModifier * 1.1f, 0);
 
     }
 

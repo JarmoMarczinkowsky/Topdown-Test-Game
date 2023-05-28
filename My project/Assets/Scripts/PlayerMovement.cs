@@ -42,4 +42,17 @@ public class PlayerMovement : MonoBehaviour
 
         
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Bullet")
+        {
+            PlayerShooter.BulletCount += 3;
+            Destroy(collision.gameObject);
+        }
+
+        Debug.Log($"Hit {collision.tag}");
+    }
+
+    
 }
