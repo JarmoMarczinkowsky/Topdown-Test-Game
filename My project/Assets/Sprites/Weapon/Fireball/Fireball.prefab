@@ -116,5 +116,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FireballSize: {fileID: 1482867030944713006}
   SizeModifier: 3
+  SizeFactor: 1.1
   MyGameobject: {fileID: 6047499538550798236}
-  PlayerPosition: {fileID: 0}
+  MyCamera: {fileID: 0}
