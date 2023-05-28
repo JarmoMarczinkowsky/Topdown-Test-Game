@@ -40,6 +40,10 @@ public class BulletBehavior : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
+        //Todo: Fix this shit
+        //found bug:
+        //bullet affected by timne will not destroy itself when hitting wall
+
         if (hitInfo.name != "BlueBullet(Clone)")
         {
             Debug.Log($"Hit: {hitInfo.name}");
@@ -48,9 +52,9 @@ public class BulletBehavior : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(1);
-                Destroy(gameObject);
             }
 
+            Destroy(gameObject);
         }
         
     }

@@ -23,7 +23,7 @@ public class ZaWarudo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.gKey.wasReleasedThisFrame)
+        if (Keyboard.current.shiftKey.isPressed)
         {
             if(hasPressed == 0)
             {
@@ -32,12 +32,17 @@ public class ZaWarudo : MonoBehaviour
                 sprite.color = new Color(0, 0, 0, 255);
                 StartCoroutine(fuckingWait(1));
             }
-            else
-            {
-                hasPressed = 0;
-                StartCoroutine(fuckingWait(-1));
+            //else
+            //{
+            //    hasPressed = 0;
+            //    StartCoroutine(fuckingWait(-1));
 
-            }
+            //}
+        }
+        else if (Keyboard.current.shiftKey.wasReleasedThisFrame)
+        {
+            hasPressed = 0;
+            StartCoroutine(fuckingWait(-1));
         }
     }
 
