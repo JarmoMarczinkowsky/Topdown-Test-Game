@@ -71,7 +71,7 @@ public class KamehamehaBehavior : MonoBehaviour
             if(collision.collider.tag == "Enemy")
             {
                 collision.collider.GetComponent<EnemyBehavior>().TakeDamage(transform.localScale.x * 3f);
-                collision.collider.GetComponent<Rigidbody2D>().velocity = transform.right * speed * rb.mass;
+                //collision.collider.GetComponent<Rigidbody2D>().velocity = transform.right * speed * rb.mass;
                 //rb.velocity = transform.right * speed * rb.mass;
                 Debug.Log($"Hit enemy with {transform.localScale.x * 3f} damage");
             }

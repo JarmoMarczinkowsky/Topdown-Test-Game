@@ -11,7 +11,7 @@ public class PlayerShooter : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject fireballPrefab;
     public TextMeshPro AmmoScore;
-    public static int BulletCount;
+    public int BulletCount;
 
     // Start is called before the first frame update
     void Start()
@@ -37,5 +37,10 @@ public class PlayerShooter : MonoBehaviour
             Debug.Log("Created fireball");
             Instantiate(fireballPrefab, fireballPoint.position, transform.rotation);
         }
+    }
+
+    public void AddBullet(int bulletCount)
+    {
+        BulletCount += bulletCount;
     }
 }

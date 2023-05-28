@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float Speed = 5f;
     public Rigidbody2D rb;
+    //public GameObject Player;
    
     // Start is called before the first frame update
     void Start()
@@ -47,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.tag == "Bullet")
         {
-            PlayerShooter.BulletCount += 3;
+            GetComponent<PlayerShooter>().AddBullet(3);
             Destroy(collision.gameObject);
         }
 
