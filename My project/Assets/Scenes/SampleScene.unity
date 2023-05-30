@@ -756,6 +756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MyEnemy: {fileID: 4886366126175837069, guid: cdf30593686796443b4e85ae9d3afae8, type: 3}
   TimeToWait: 5
+  IsSpawning: 1
 --- !u!4 &848052637
 Transform:
   m_ObjectHideFlags: 0
