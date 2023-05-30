@@ -57,10 +57,19 @@ public class KamehamehaBehavior : MonoBehaviour
 
         FireballSize.localScale = new Vector3(chargeSpeed / SizeModifier * SizeFactor, chargeSpeed / SizeModifier * SizeFactor, 0);
 
+        if (Keyboard.current.shiftKey.isPressed)
+        {
+            rb.velocity = transform.right * speed * 0.1f;
+        }
+        else
+        {
+            rb.velocity = transform.right * speed;
+        }
+
 
     }
 
-    
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -71,6 +80,11 @@ public class KamehamehaBehavior : MonoBehaviour
             if(collision.collider.tag == "Enemy")
             {
                 collision.collider.GetComponent<EnemyBehavior>().TakeDamage(transform.localScale.x * 3f);
+                //enemy thats hit doesnt move
+                collision.collider.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+                collision.collider.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                collision.collider.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+
                 //collision.collider.GetComponent<Rigidbody2D>().velocity = transform.right * speed * rb.mass;
                 //rb.velocity = transform.right * speed * rb.mass;
                 Debug.Log($"Hit enemy with {transform.localScale.x * 3f} damage");
