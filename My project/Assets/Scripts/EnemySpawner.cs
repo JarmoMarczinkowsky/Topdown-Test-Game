@@ -14,12 +14,6 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(WaitTime(TimeToWait, MyEnemy));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     IEnumerator WaitTime(float time, GameObject swarmPrefab)
     {
         yield return new WaitForSeconds(20);
@@ -31,6 +25,5 @@ public class EnemySpawner : MonoBehaviour
             
             yield return new WaitForSeconds(time);
         }
-
     }
 }

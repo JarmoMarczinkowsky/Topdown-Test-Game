@@ -28,8 +28,6 @@ public class EnemyBehavior : MonoBehaviour
         }
 
         StartCoroutine(WaitTime(DamageVisibleTime));
-
-        Debug.Log("Change Color back");
     }
 
     IEnumerator WaitTime(float waitTime)

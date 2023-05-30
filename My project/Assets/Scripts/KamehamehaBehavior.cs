@@ -56,17 +56,6 @@ public class KamehamehaBehavior : MonoBehaviour
         }
 
         FireballSize.localScale = new Vector3(chargeSpeed / SizeModifier * SizeFactor, chargeSpeed / SizeModifier * SizeFactor, 0);
-
-        //if (Keyboard.current.shiftKey.isPressed && released)
-        //{
-        //    rb.velocity = transform.right * speed * 0.1f;
-        //}
-        //else if (released)
-        //{
-        //    rb.velocity = transform.right * speed;
-        //}
-
-
     }
 
 
