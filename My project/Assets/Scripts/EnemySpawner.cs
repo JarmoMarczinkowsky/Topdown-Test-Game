@@ -22,16 +22,15 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator WaitTime(float time, GameObject swarmPrefab)
     {
-        yield return new WaitForSeconds(time);
-        Instantiate(swarmPrefab, new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0), Quaternion.identity);
+        yield return new WaitForSeconds(20);
 
-        if (Keyboard.current.shiftKey.isPressed)
+        for (int i = 0; i < 5; i++)
         {
-            StartCoroutine(WaitTime(TimeToWait / 0.1f, swarmPrefab));
+            Instantiate(swarmPrefab, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0), Quaternion.identity);
+            Debug.Log($"Spam {i}");
+            
+            yield return new WaitForSeconds(time);
         }
-        else
-        {
-            StartCoroutine(WaitTime(TimeToWait, swarmPrefab));
-        }
+
     }
 }
