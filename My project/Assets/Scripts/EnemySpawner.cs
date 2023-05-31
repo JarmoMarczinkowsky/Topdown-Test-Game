@@ -21,9 +21,7 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            Instantiate(swarmPrefab, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0), Quaternion.identity);
-            Debug.Log($"Spam {i}");
-            
+            Instantiate(swarmPrefab, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0), Quaternion.identity);            
             yield return new WaitForSeconds(0.5f);
         }
     }

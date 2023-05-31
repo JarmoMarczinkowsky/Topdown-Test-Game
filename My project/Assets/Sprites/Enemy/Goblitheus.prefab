@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hitpoints: 0
-  MaxHitPoints: 14
+  MaxHitPoints: 5
   DamageVisibleTime: 0.1
 --- !u!61 &4886366126175837172
 BoxCollider2D:

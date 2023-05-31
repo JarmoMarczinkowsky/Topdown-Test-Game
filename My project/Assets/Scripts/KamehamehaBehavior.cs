@@ -69,13 +69,8 @@ public class KamehamehaBehavior : MonoBehaviour
             if(collision.collider.tag == "Enemy")
             {
                 collision.collider.GetComponent<EnemyBehavior>().TakeDamage(transform.localScale.x * 3f);
-                //enemy thats hit doesnt move
-                collision.collider.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-                collision.collider.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-                collision.collider.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+                collision.collider.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
-                //collision.collider.GetComponent<Rigidbody2D>().velocity = transform.right * speed * rb.mass;
-                //rb.velocity = transform.right * speed * rb.mass;
                 Debug.Log($"Hit enemy with {transform.localScale.x * 3f} damage");
             }
         }
