@@ -814,6 +814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 511993352}
+  EyeColor: {fileID: 102053332}
   speed: 20
   rotationModifier: 90
 --- !u!58 &630059221
