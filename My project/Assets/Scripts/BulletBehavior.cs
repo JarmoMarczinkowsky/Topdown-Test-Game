@@ -43,6 +43,10 @@ public class BulletBehavior : MonoBehaviour
         //Todo: Fix this shit
         //found bug:
         //bullet affected by timne will not destroy itself when hitting wall
+        if (hitInfo.tag == "Bullet")
+        {
+            return;
+        }
 
         if (hitInfo.name != "BlueBullet(Clone)")
         {
