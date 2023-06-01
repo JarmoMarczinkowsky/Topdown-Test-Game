@@ -10,6 +10,14 @@ public class EyeBehavior : MonoBehaviour
     public float rotationModifier;
 
     private int bumpCount;
+    private Color getEyeColor;
+
+    void Start()
+    {
+        bumpCount = 0;
+        getEyeColor = EyeColor.color;
+    }
+
     private void FixedUpdate()
     {
         if (player != null)
@@ -31,11 +39,11 @@ public class EyeBehavior : MonoBehaviour
 
         if(bumpCount == 1)
         {
-            EyeColor.color = Color.red;
+            EyeColor.color = new Color(255, 0, 0, 255);
         }
         else if(bumpCount == 2)
         {
-            EyeColor.color = new Color(0, 141, 154, 255);
+            EyeColor.color = getEyeColor;
             bumpCount = 0;
         }
     }
