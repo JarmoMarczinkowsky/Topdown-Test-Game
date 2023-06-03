@@ -463,6 +463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   square: {fileID: 132364469}
   triangle: {fileID: 1501502770}
+  waitTime: 2
   spinSpeed: 0.1
 --- !u!212 &1713927004
 SpriteRenderer:

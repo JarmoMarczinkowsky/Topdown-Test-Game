@@ -12,22 +12,36 @@ public class MiniGame : MonoBehaviour
     private Collider2D triangle;
 
     [SerializeField]
+    private float waitTime;
+
+    [SerializeField]
     private float spinSpeed = 0.01f;
     private bool spinning = true;
     private bool holding = false;
+    private bool waited = false;
+    private float counter = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!spinning)
+        StartCoroutine(WaitTime(waitTime));
+    }
+
+    private void Spinning()
+    {
+        if (!spinning || counter >= 360)
         {
+            spinning = true;
+            waited = false;
+            counter = 0;
             return;
+
         }
 
         if (Keyboard.current.spaceKey.isPressed)
@@ -48,8 +62,18 @@ public class MiniGame : MonoBehaviour
             holding = false;
         }
 
-        
-
         transform.Rotate(0, 0, -1 * spinSpeed);
+
+        counter += spinSpeed;
+    }
+
+    IEnumerator WaitTime(float time)
+    {
+        if (!waited)
+        {
+            yield return new WaitForSeconds(time);
+            waited = true;
+        }
+        Spinning();
     }
 }
