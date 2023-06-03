@@ -8,6 +8,8 @@ public class MiniGame : MonoBehaviour
     [SerializeField]
     private Collider2D square;
 
+    [SerializeField] private SpriteRenderer lineSprite;
+
     [SerializeField]
     private Collider2D triangle;
 
@@ -17,8 +19,6 @@ public class MiniGame : MonoBehaviour
     [SerializeField]
     private float spinSpeed = 0.01f;
     private bool spinning = true;
-    private bool holding = false;
-    private bool waited = false;
     private float counter = 0;
 
     // Start is called before the first frame update
@@ -35,45 +35,39 @@ public class MiniGame : MonoBehaviour
 
     private void Spinning()
     {
-        if (!spinning || counter >= 360)
-        {
-            spinning = true;
-            waited = false;
-            counter = 0;
-            return;
 
+        //check if triangle is within square and change color of line
+        ChangeColor();
+
+        //if triangle is within square and space is pressed, stop spinning
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && square.bounds.Contains(triangle.bounds.min) && square.bounds.Contains(triangle.bounds.max))
+        {
+            spinning = false;
         }
 
-        if (Keyboard.current.spaceKey.isPressed)
+        if (spinning && counter <= 360)
         {
-            if (square.bounds.Contains(triangle.bounds.min) && square.bounds.Contains(triangle.bounds.max) && !holding)
-            {
-                spinning = false;
-                Debug.Log("Fully within");
-            }
-            else
-            {
-                holding = true;
-                Debug.Log("Missed");
-            }
-        }
-        else if (Keyboard.current.spaceKey.wasReleasedThisFrame)
-        {
-            holding = false;
+            transform.Rotate(0, 0, -1 * spinSpeed);
+            counter += spinSpeed;
         }
 
-        transform.Rotate(0, 0, -1 * spinSpeed);
+    }
 
-        counter += spinSpeed;
+    private void ChangeColor()
+    {
+        if (square.bounds.Contains(triangle.bounds.min) && square.bounds.Contains(triangle.bounds.max))
+        {
+            lineSprite.color = Color.green;
+        }
+        else
+        {
+            lineSprite.color = Color.red;
+        }
     }
 
     IEnumerator WaitTime(float time)
     {
-        if (!waited)
-        {
-            yield return new WaitForSeconds(time);
-            waited = true;
-        }
+        yield return new WaitForSeconds(time);
         Spinning();
     }
 }
