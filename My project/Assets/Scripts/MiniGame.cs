@@ -10,27 +10,26 @@ public class MiniGame : MonoBehaviour
 
     [SerializeField] private SpriteRenderer lineSprite;
 
-    [SerializeField]
-    private Collider2D triangle;
+    [SerializeField] private Collider2D triangle;
 
-    [SerializeField]
-    private float waitTime;
+    [SerializeField] private float waitTime;
 
-    [SerializeField]
-    private float spinSpeed = 0.01f;
+    [SerializeField] private float spinSpeed;
     private bool spinning = true;
+    private bool canSpin = true;
     private float counter = 0;
+    private float round = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(WaitTime(waitTime));
+        StartCoroutine(WaitTime(waitTime, canSpin));
     }
 
     private void Spinning()
@@ -47,8 +46,14 @@ public class MiniGame : MonoBehaviour
 
         if (spinning && counter <= 360)
         {
-            transform.Rotate(0, 0, -1 * spinSpeed);
+            transform.Rotate(0, 0, -1 * spinSpeed - (spinSpeed * round));
             counter += spinSpeed;
+
+        }
+        else
+        {
+            canSpin = false;
+            //Debug.Log("Test");
         }
 
     }
@@ -65,9 +70,20 @@ public class MiniGame : MonoBehaviour
         }
     }
 
-    IEnumerator WaitTime(float time)
+    IEnumerator WaitTime(float time, bool startSpinning)
     {
         yield return new WaitForSeconds(time);
-        Spinning();
+
+        if (startSpinning)
+        {
+            Spinning();
+        }
+        else
+        {
+            canSpin = true;
+            spinning = true;
+            counter = 0;
+            Debug.Log("Hier");
+        }
     }
 }
