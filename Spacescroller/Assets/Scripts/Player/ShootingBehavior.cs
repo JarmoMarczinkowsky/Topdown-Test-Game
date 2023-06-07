@@ -19,16 +19,24 @@ public class ShootingBehavior : MonoBehaviour
         rb.velocity = new Vector2(2 * speed, 0);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    Debug.Log($"Hit {collision.name}");
+
+    //    if (collision.tag == "asteroid")
+    //    {
+    //        Destroy(collision.gameObject);
+    //    }
+    //    Destroy(gameObject);
+    //}
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        Debug.Log($"Hit {collision.gameObject.name}");
+        if (collision.gameObject.tag == "asteroid")
         {
             Destroy(collision.gameObject);
-            Destroy(gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }

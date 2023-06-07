@@ -11,6 +11,8 @@ public class AsteroidBehavior : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        float getRandom = Random.Range(1f, 7f);
+        transform.localScale = new Vector2(getRandom, getRandom);
     }
 
     // Update is called once per frame

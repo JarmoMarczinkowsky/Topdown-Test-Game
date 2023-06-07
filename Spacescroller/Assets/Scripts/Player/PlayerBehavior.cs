@@ -48,10 +48,12 @@ public class PlayerBehavior : MonoBehaviour
             Instantiate(bulletPrefab, shootingPosition.position, transform.rotation);
         }
 
+        
         timePassed += Time.deltaTime;
         if (timePassed >= 5f)
         {
-            Instantiate(asteroidPrefab, asteroidPosition.position, Quaternion.identity);
+            
+            Instantiate(asteroidPrefab, new Vector2(asteroidPosition.position.x, Random.Range(asteroidPosition.position.y - 4.5f, asteroidPosition.position.y + 5)), Quaternion.identity);
             timePassed = 0f;
         }
     }
