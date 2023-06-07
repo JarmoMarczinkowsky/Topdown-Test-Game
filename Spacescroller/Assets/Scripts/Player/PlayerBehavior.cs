@@ -6,6 +6,10 @@ using UnityEngine.InputSystem;
 public class PlayerBehavior : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform shootingPosition;
+
+    
     private Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -34,6 +38,11 @@ public class PlayerBehavior : MonoBehaviour
         else
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            Instantiate(bulletPrefab, shootingPosition.position, transform.rotation);
         }
     }
 }
