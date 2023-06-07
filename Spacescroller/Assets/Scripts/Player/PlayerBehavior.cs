@@ -7,8 +7,11 @@ public class PlayerBehavior : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private GameObject asteroidPrefab;
     [SerializeField] private Transform shootingPosition;
-
+    [SerializeField] private Transform asteroidPosition;
+    
+    private float timePassed;
     
     private Rigidbody2D rb;
 
@@ -43,6 +46,13 @@ public class PlayerBehavior : MonoBehaviour
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             Instantiate(bulletPrefab, shootingPosition.position, transform.rotation);
+        }
+
+        timePassed += Time.deltaTime;
+        if (timePassed >= 5f)
+        {
+            Instantiate(asteroidPrefab, asteroidPosition.position, Quaternion.identity);
+            timePassed = 0f;
         }
     }
 }
