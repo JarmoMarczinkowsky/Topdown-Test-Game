@@ -19,9 +19,12 @@ public class AsteroidBehavior : MonoBehaviour
         float getRandom = Random.Range(1f, 7f);
         transform.localScale = new Vector2(getRandom, getRandom);
         
-        float health = transform.localScale.x * (1.5f * transform.localScale.x );
+        float health = transform.localScale.x * 1.5f;
         Debug.Log(health);
         hitpoints = health;
+
+        myText.text = Mathf.Round(hitpoints).ToString();
+
     }
 
     // Update is called once per frame
