@@ -10,8 +10,9 @@ public class AsteroidBehavior : MonoBehaviour
     [SerializeField] private float maxHealth = 10f;
     [SerializeField] private float hitpoints;
     [SerializeField] private TextMeshPro myText;
+    [SerializeField] private Color hitColor;
 
-
+    private SpriteRenderer myColor;
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -28,9 +29,11 @@ public class AsteroidBehavior : MonoBehaviour
 
         //mass is relative to the size of the asteroid
         //the bigger the asteroid, the more mass it has
-        rb.mass = Mathf.Round(transform.localScale.x * 3);
+        rb.mass = Mathf.Round(transform.localScale.x * 3 * speedFactor);
 
         myText.text = Mathf.Round(hitpoints).ToString();
+
+        myColor = GetComponent<SpriteRenderer>();
 
     }
 
@@ -42,7 +45,7 @@ public class AsteroidBehavior : MonoBehaviour
         //the bigger the asteroid, the slower it moves
         if (rb != null)
         {
-            rb.velocity = new Vector2(-speed / transform.localScale.x, 0);
+            rb.velocity = new Vector2((-speed / transform.localScale.x) * speedFactor, 0);
         }
         //rb.velocity = new Vector2(-2 * speed, 0);
     }
@@ -52,19 +55,30 @@ public class AsteroidBehavior : MonoBehaviour
         hitpoints -= damage;
         myText.text = Mathf.Round(hitpoints).ToString();
 
+        myColor.color = hitColor;
+
+
         if (hitpoints <= 0)
         {
             Destroy(gameObject);
         }
 
+        StartCoroutine(waitTime(.1f));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //deletes asteroid if it hits the fail square
-        if (collision.collider.name == "FailAsteroid")
+        if (collision.collider.tag == "Border")
         {
+            Debug.Log("Asteroid hit a border");
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator waitTime(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        myColor.color = Color.white;
     }
 }

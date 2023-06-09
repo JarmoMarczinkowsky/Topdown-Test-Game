@@ -7,7 +7,6 @@ public class ShootingBehavior : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] Color hitColor;
     private SpriteRenderer spriteColor;
-    private float waitTime = 0f;
 
     private Rigidbody2D rb;
     // Start is called before the first frame update
@@ -30,9 +29,7 @@ public class ShootingBehavior : MonoBehaviour
         var enemy = collision.collider.GetComponent<AsteroidBehavior>();
         if (enemy != null)
         {
-            //var spriteRenderer = collision.collider.GetComponent<SpriteRenderer>();
             enemy.TakeHit(1);
-
         }
 
 
@@ -40,7 +37,6 @@ public class ShootingBehavior : MonoBehaviour
     }
 
     //create method that lets you wait 2 seconds before it changes the color back to white
-
 
 
 
