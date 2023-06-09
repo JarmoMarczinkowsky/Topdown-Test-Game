@@ -19,7 +19,7 @@ public class AsteroidBehavior : MonoBehaviour
         float getRandom = Random.Range(1f, 7f);
         transform.localScale = new Vector2(getRandom, getRandom);
         
-        float health = transform.localScale.x * 1.5f;
+        float health = Mathf.Round(transform.localScale.x * 1.5f);
         Debug.Log(health);
         hitpoints = health;
 
