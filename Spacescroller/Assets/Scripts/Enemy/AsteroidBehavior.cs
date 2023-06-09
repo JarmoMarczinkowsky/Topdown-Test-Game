@@ -44,4 +44,14 @@ public class AsteroidBehavior : MonoBehaviour
         }
 
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //deletes asteroid if it hits the fail square
+        if (collision.collider.name == "FailAsteroid")
+        {
+            Debug.Log("Should delete asteroid");
+            Destroy(gameObject);
+        }
+    }
 }
