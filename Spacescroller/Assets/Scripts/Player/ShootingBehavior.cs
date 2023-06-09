@@ -5,6 +5,10 @@ using UnityEngine;
 public class ShootingBehavior : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
+    [SerializeField] Color hitColor;
+    private SpriteRenderer spriteColor;
+    private float waitTime = 0f;
+
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -21,16 +25,23 @@ public class ShootingBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log($"Hit {collision.gameObject.name}");
-        
+        //Debug.Log($"Hit {collision.gameObject.name}");
+
         var enemy = collision.collider.GetComponent<AsteroidBehavior>();
         if (enemy != null)
         {
-            Debug.Log("Hit enemy");
-            enemy.TakeHit(1);            
+            //var spriteRenderer = collision.collider.GetComponent<SpriteRenderer>();
+            enemy.TakeHit(1);
+
         }
 
 
         Destroy(gameObject);
     }
+
+    //create method that lets you wait 2 seconds before it changes the color back to white
+
+
+
+
 }

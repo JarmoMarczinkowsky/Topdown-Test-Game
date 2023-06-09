@@ -10,7 +10,9 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] private GameObject asteroidPrefab;
     [SerializeField] private Transform shootingPosition;
     [SerializeField] private Transform asteroidPosition;
-    
+
+    private int asteroidCount;
+
     private float timePassed;
     
     private Rigidbody2D rb;
@@ -52,9 +54,13 @@ public class PlayerBehavior : MonoBehaviour
         timePassed += Time.deltaTime;
         if (timePassed >= 5f)
         {
-            
+
             Instantiate(asteroidPrefab, new Vector2(asteroidPosition.position.x, Random.Range(asteroidPosition.position.y - 4.5f, asteroidPosition.position.y + 5)), Quaternion.identity);
             timePassed = 0f;
+            //set speedfactor of asteroidbehavior
+            asteroidCount++;
+            asteroidPrefab.GetComponent<AsteroidBehavior>().speedFactor = 1 + (asteroidCount / 10);
+            //Debug.Log($"Speedfactor: {1 + (asteroidCount / 5)}");
         }
     }
 }
