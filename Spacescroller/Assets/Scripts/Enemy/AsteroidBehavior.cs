@@ -11,6 +11,8 @@ public class AsteroidBehavior : MonoBehaviour
     [SerializeField] private float hitpoints;
     [SerializeField] private TextMeshPro myText;
     [SerializeField] private Color hitColor;
+    [SerializeField] private HealthBarBehavior Healthbar;
+    private float health;
 
     private SpriteRenderer myColor;
     private Rigidbody2D rb;
@@ -23,7 +25,7 @@ public class AsteroidBehavior : MonoBehaviour
 
         //health is relative to the size of the asteroid
         //the bigger the asteroid, the more health it has
-        float health = Mathf.Round(transform.localScale.x * 3);
+        health = Mathf.Round(transform.localScale.x * 3);
 
         hitpoints = health;
 
@@ -34,6 +36,9 @@ public class AsteroidBehavior : MonoBehaviour
         myText.text = Mathf.Round(hitpoints).ToString();
 
         myColor = GetComponent<SpriteRenderer>();
+
+        Healthbar.SetHealth(hitpoints, health);
+
 
     }
 
@@ -53,6 +58,8 @@ public class AsteroidBehavior : MonoBehaviour
     public void TakeHit(float damage)
     {
         hitpoints -= damage;
+        Healthbar.SetHealth(hitpoints, health);
+
         myText.text = Mathf.Round(hitpoints).ToString();
 
         myColor.color = hitColor;
