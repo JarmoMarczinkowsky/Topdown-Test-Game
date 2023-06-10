@@ -38,7 +38,11 @@ public class ShootingBehavior : MonoBehaviour
         {
             collision.collider.GetComponent<EnemyBehavior >().TakeHit(1);
         }
-        
+        else if (collision.collider.tag == "Bullet")
+        {
+            return;
+        }
+
         Destroy(gameObject);
     }
 

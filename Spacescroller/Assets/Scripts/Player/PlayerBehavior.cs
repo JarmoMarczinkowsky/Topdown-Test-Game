@@ -14,7 +14,8 @@ public class PlayerBehavior : MonoBehaviour
     private int asteroidCount;
 
     private float timePassed;
-    
+    private float spacePress;
+
     private Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -45,10 +46,19 @@ public class PlayerBehavior : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (Keyboard.current.spaceKey.isPressed)
         {
-            Instantiate(bulletPrefab, shootingPosition.position, transform.rotation);
+            spacePress += Time.deltaTime;
+            if (spacePress >= 0.4f)
+            {
+                Instantiate(bulletPrefab, shootingPosition.position, transform.rotation);
+                spacePress = 0f;
+            }
         }
+        //else if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        //{
+        //    Instantiate(bulletPrefab, shootingPosition.position, transform.rotation);
+        //}
 
         
         timePassed += Time.deltaTime;
