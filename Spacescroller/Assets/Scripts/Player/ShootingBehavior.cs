@@ -26,13 +26,19 @@ public class ShootingBehavior : MonoBehaviour
     {
         //Debug.Log($"Hit {collision.gameObject.name}");
 
-        var enemy = collision.collider.GetComponent<AsteroidBehavior>();
-        if (enemy != null)
+        if (collision.collider.tag == "Asteroid")
         {
-            enemy.TakeHit(1);
+            var enemy = collision.collider.GetComponent<AsteroidBehavior>();
+            if (enemy != null)
+            {
+                enemy.TakeHit(1);
+            }
         }
-
-
+        else if (collision.collider.name == "enemy")
+        {
+            collision.collider.GetComponent<EnemyBehavior >().TakeHit(1);
+        }
+        
         Destroy(gameObject);
     }
 
