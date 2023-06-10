@@ -34,7 +34,7 @@ public class ShootingBehavior : MonoBehaviour
                 enemy.TakeHit(1);
             }
         }
-        else if (collision.collider.name == "enemy")
+        else if (collision.collider.tag == "Enemy")
         {
             collision.collider.GetComponent<EnemyBehavior >().TakeHit(1);
         }
