@@ -76,11 +76,16 @@ public class AsteroidBehavior : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //deletes asteroid if it hits the fail square
-        if (collision.collider.tag == "Border")
+        if (collision.collider.name == "BorderLeft")
+        {
+            Debug.Log("Asteroid hit finish");
+        }        
+        else if (collision.collider.tag == "Border")
         {
             Debug.Log("Asteroid hit a border");
             Destroy(gameObject);
         }
+
     }
 
     private IEnumerator waitTime(float wait)

@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerBehavior : MonoBehaviour
 {
+    [SerializeField] public PauseMenu PauseMenu;
+        
     [SerializeField] private float speed = 5f;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject asteroidPrefab;
@@ -27,6 +29,12 @@ public class PlayerBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PauseMenu.isPaused)
+        {
+            return;
+        }
+
+
         //float moveX = Input.GetAxis("Horizontal");
         float moveY = Input.GetAxis("Vertical");
 
