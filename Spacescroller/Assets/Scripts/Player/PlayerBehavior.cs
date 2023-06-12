@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerBehavior : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] private GameObject asteroidPrefab;
     [SerializeField] private Transform shootingPosition;
     [SerializeField] private Transform asteroidPosition;
+    [SerializeField] private Toggle toggleShooter;
 
     private int asteroidCount;
 
@@ -54,15 +56,28 @@ public class PlayerBehavior : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
-        if (Keyboard.current.spaceKey.isPressed)
+
+        if(toggleShooter.isOn)
         {
-            spacePress += Time.deltaTime;
-            if (spacePress >= 0.4f)
+            if (Keyboard.current.spaceKey.isPressed)
             {
-                Instantiate(bulletPrefab, shootingPosition.position, transform.rotation);
-                spacePress = 0f;
+                spacePress += Time.deltaTime;
+                if (spacePress >= 0.4f)
+                {
+                    Instantiate(bulletPrefab, shootingPosition.position, transform.rotation);
+                    spacePress = 0f;
+                }
             }
         }
+        else
+        {
+            if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            {
+                Instantiate(bulletPrefab, shootingPosition.position, transform.rotation);
+            }
+        }
+
+        
         //else if (Keyboard.current.spaceKey.wasPressedThisFrame)
         //{
         //    Instantiate(bulletPrefab, shootingPosition.position, transform.rotation);

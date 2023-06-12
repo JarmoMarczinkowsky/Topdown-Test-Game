@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
     public bool isPaused;
+    public Toggle ToggleShooter;
+
 
     // Start is called before the first frame update
     void Start()
@@ -42,5 +45,17 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+    }
+
+    public void ToggleShoot()
+    {
+        if(ToggleShooter.isOn)
+        {
+            Debug.Log("Toggle is on");
+        }
+        else
+        {
+            Debug.Log("Toggle is off");
+        }
     }
 }
