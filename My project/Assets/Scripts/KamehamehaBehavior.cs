@@ -8,24 +8,31 @@ public class KamehamehaBehavior : MonoBehaviour
     public Transform FireballSize;
     public float SizeModifier = 3f;
     public float SizeFactor = 1.1f;
-    public GameObject MyGameobject;
+    public GameObject FireballPrefab;
 
+    private Vector3 ShootPosition;
+    private SpriteRenderer mySpriteRenderer;
     private float chargeSpeed;
     private Rigidbody2D rb;
     private RigidbodyConstraints2D pos;
     private float speed = 1;
     private bool released = false;
+    private float radius = 0;
     // Start is called before the first frame update
     void Start()
     {
-        //rb = GetComponent<Rigidbody2D>();
+        mySpriteRenderer = GetComponent<SpriteRenderer>();
 
-        
+        ShootPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        radius = mySpriteRenderer.bounds.extents.x;
+        Debug.Log($"Radius is: {radius}");
+
+
         if (released)
         {
             return;
@@ -34,6 +41,12 @@ public class KamehamehaBehavior : MonoBehaviour
         if (Keyboard.current.fKey.isPressed)
         {
             chargeSpeed += Time.deltaTime;
+
+            //if sprite player looks to the left
+
+
+            transform.position = new Vector3(ShootPosition.x + radius, ShootPosition.y, 0);
+
             //Debug.Log(chargeSpeed);
 
         }
@@ -44,7 +57,7 @@ public class KamehamehaBehavior : MonoBehaviour
                 Destroy(gameObject);
             }
 
-            rb = MyGameobject.AddComponent<Rigidbody2D>();
+            rb = FireballPrefab.AddComponent<Rigidbody2D>();
             pos = RigidbodyConstraints2D.FreezeRotation;
 
             speed = 12 / (chargeSpeed / 2);
